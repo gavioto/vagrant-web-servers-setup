@@ -1,36 +1,37 @@
 # SERVERS
 
-Boxes:
-    - SO: CentOS 6.4 i386 (2013 04 27)
-    - This box was made with VirtualBox 4.2.12, and has guest additions 4.2.12 installed in it.
-        You should use the same versions to run it.
+    Boxes:
+        - CentOS 6.4 i386 (2013 04 27)
+        - This box was made with VirtualBox 4.2.12, and has guest additions 4.2.12 installed in it.
+            You should use the same versions to run it.
 
-This Vagrant setup currently provides 3 servers:
-    - app
-        An apache/php webserver. If in dev environment it will also install development utilities
-        You can access MySQL through http://192.168.1.11
+    This Vagrant setup currently provides 3 servers:
 
-    - db
-        A MySQL server with phpMyAdmin, secured with root pass 'xpto' you shouls use vendor scripts to change this
-        You can access MySQL through http://192.168.1.12/phpmyadmin
+        - app
+            An apache/php webserver. If in dev environment it will also install development utilities
+            You can access MySQL through http://192.168.1.11
 
-    - reports
-        A reports server, with SOLR and JasperReports Server.
+        - db
+            A MySQL server with phpMyAdmin, secured with root pass 'xpto' you shouls use vendor scripts to change this
+            You can access MySQL through http://192.168.1.12/phpmyadmin
 
-        - SOLR
-            You can access SOLR through http://192.168.1.13:8080/instance1
-            You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
-            Config files to edit in each new deployment:
-                /opt/solr/instances/<instance_name>.xml
-                /opt/solr/instances/<instance_name>/solr.xml
-                /opt/solr/instances/<instance_name>/<core_name>/schema.xml
-                /opt/solr/instances/<instance_name>/<core_name>/dataimport.xml
-            To make tomcat aware of a new instance, run:
-                ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
+        - reports
+            A reports server, with SOLR and JasperReports Server.
 
-        - Jasper Reports Server
+            - SOLR
+                You can access SOLR through http://192.168.1.13:8080/instance1
+                You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
+                Config files to edit in each new deployment:
+                    /opt/solr/instances/<instance_name>.xml
+                    /opt/solr/instances/<instance_name>/solr.xml
+                    /opt/solr/instances/<instance_name>/<core_name>/schema.xml
+                    /opt/solr/instances/<instance_name>/<core_name>/dataimport.xml
+                To make tomcat aware of a new instance, run:
+                    ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
 
-    - mailings (planed OpenEmm installation)
+            - Jasper Reports Server
+
+        - mailings (planed OpenEmm installation)
 
 ## Box Deployment
 
