@@ -1,9 +1,13 @@
-# the environment where this will be installed: dev, tst, prd
-environment = "dev"
-vendor = "default"
-gituser= "hgraca"
-memory = "512"
-
+#
+# VARIABLES
+#
+environment = "dev"      # dev, tst, stg, prd
+vendor      = "-"        # for no vendor specific configs leave it as "-"
+gituser     = "hgraca"   # the git username from where to clone the projects in the vendor scripts
+memory      = "512"      # the VMs RAM memory
+#
+#
+#
 Vagrant.configure("2") do |config|
 
     # ==================================================================
@@ -37,7 +41,7 @@ Vagrant.configure("2") do |config|
         app.vm.network :private_network, ip: "192.168.1.11"
         app.vm.provision :shell do |s|
             s.path = "provisioning.sh"
-            s.args = "-b app -e #{environment} -v #{vendor} -g #{gituser}"
+            s.args = "-b app -e #{environment} -g #{gituser} -v #{vendor}"
         end
 
         # This is here for reference only
@@ -62,7 +66,7 @@ Vagrant.configure("2") do |config|
         db.vm.network :private_network, ip: "192.168.1.12"
         db.vm.provision :shell do |s|
             s.path = "provisioning.sh"
-            s.args = "-b db -e #{environment} -v #{vendor} -g #{gituser}"
+            s.args = "-b db -e #{environment} -g #{gituser} -v #{vendor}"
         end
     end
 
@@ -83,7 +87,7 @@ Vagrant.configure("2") do |config|
         reports.vm.network :private_network, ip: "192.168.1.13"
         reports.vm.provision :shell do |s|
             s.path = "provisioning.sh"
-            s.args = "-b reports -e #{environment} -v #{vendor} -g #{gituser}"
+            s.args = "-b reports -e #{environment} -g #{gituser} -v #{vendor}"
         end
     end
 
@@ -104,7 +108,7 @@ Vagrant.configure("2") do |config|
         mailings.vm.network :private_network, ip: "192.168.1.14"
         mailings.vm.provision :shell do |s|
             s.path = "provisioning.sh"
-            s.args = "-b mailings -e #{environment} -v #{vendor} -g #{gituser}"
+            s.args = "-b mailings -e #{environment} -g #{gituser} -v #{vendor}"
         end
     end
 

@@ -89,9 +89,6 @@
         cat /etc/php.ini.bkp | sed -e "s/display_errors = Off/display_errors = On/" > /etc/php.ini
         rm /etc/php.ini.bkp
 
-
-        /etc/init.d/httpd restart
-
         echo "[$SCRIPT] ---------- Finished installing development utilities ----------"
     }
 

@@ -14,14 +14,14 @@
     yum -y install mysql mysql-server
     chkconfig --levels 235 mysqld on # start at boot
     /etc/init.d/mysqld start         # start mysql
-    /vagrant/provisioning/fragments/mysql_secure.sh '' 'Vemt@)!@' # (oldrootpass newrootpass) make it secure, answer yes to everything
+    /vagrant/provisioning/fragments/mysql_secure.sh '' 'xpto' # (oldrootpass newrootpass) make it secure, answer yes to everything
 
 #
 # phpMyAdmin
 #
     phpmyadminVer=4.0.2
 
-    /vagrant/provisioning/fragments/web.sh
+    /vagrant/provisioning/fragments/server-php.sh
 
     rpm --import http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
     yum -y install http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.i686.rpm
@@ -54,7 +54,7 @@
     # Get the latest version of phpMyAdmin
     mv -f /usr/share/phpmyadmin/config.inc.php /vagrant
     rm -rf /usr/share/phpmyadmin
-    wget "http://kent.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.0.2/phpMyAdmin-4.0.2-all-languages.tar.gz"
+    wget "http://kent.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/$phpmyadminVer/phpMyAdmin-$phpmyadminVer-all-languages.tar.gz"
     tar xfz ./phpMyAdmin-$phpmyadminVer-all-languages.tar.gz -C /usr/share/
     mv /usr/share/phpMyAdmin-$phpmyadminVer-all-languages /usr/share/phpmyadmin
     mv -f /vagrant/config.inc.php /usr/share/phpmyadmin

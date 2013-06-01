@@ -1,53 +1,70 @@
-# VEMT SERVERS
+# SERVERS
+
+Boxes:
+    - SO: CentOS 6.4 i386 (2013 04 27)
+    - This box was made with VirtualBox 4.2.12, and has guest additions 4.2.12 installed in it.
+        You should use the same versions to run it.
+
+This Vagrant setup currently provides 3 servers:
+    - app
+        An apache/php webserver. If in dev environment it will also install development utilities
+        You can access MySQL through http://192.168.1.11
+
+    - db
+        A MySQL server with phpMyAdmin, secured with root pass 'xpto' you shouls use vendor scripts to change this
+        You can access MySQL through http://192.168.1.12/phpmyadmin
+
+    - reports
+        A reports server, with SOLR and JasperReports Server.
+
+        - SOLR
+            You can access SOLR through http://192.168.1.13:8080/instance1
+            You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
+            Config files to edit in each new deployment:
+                /opt/solr/instances/<instance_name>.xml
+                /opt/solr/instances/<instance_name>/solr.xml
+                /opt/solr/instances/<instance_name>/<core_name>/schema.xml
+                /opt/solr/instances/<instance_name>/<core_name>/dataimport.xml
+            To make tomcat aware of a new instance, run:
+                ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
+
+        - Jasper Reports Server
+
+    - mailings (planed OpenEmm installation)
+
+## Box Deployment
+
+    - Open the file "vagrantfile" and edit the variables to your needs
+
+    - Run the following command lines:
+        - vagrant up <box_name>
+
+    - If you want all packages to be updated:
+        - vagrant ssh <box_name>
+        - sudo yum update -y
 
 ## Usefull Vagrant commands
 
-    - vagrant up app
+    - vagrant up <box_name>
         - starts the VM, installs all software and makes all configurations needed (provisioning)
         - If the provisioning has already been made, it won't be done again,
             unless you delete the file "/root/vagrant_provisioning.lock"
 
-    - vagrant suspend app
+    - vagrant suspend <box_name>
         - saves the state of the VM and shuts it down
 
-    - vagrant resume app
+    - vagrant resume <box_name>
         - resume the state of a suspended VM
 
-    - vagrant halt app
+    - vagrant halt <box_name>
         - stops a VM
 
-    - vagrant reload app
+    - vagrant reload <box_name>
         - Applies changes made in the vagrant file
 
-    - vagrant destroy app
+    - vagrant destroy <box_name>
         - destroys the VM and deletes all VM files
 
-    - vagrant ssh app
+    - vagrant ssh <box_name>
         - ssh to the VM
 
-## APP
-
-    - SO: CentOS 6.4 i386 (2013 04 27)
-
-    - This box was made with VirtualBox 4.2.12, and has guest additions 4.2.12 installed in it.
-        You should use the same versions to run it.
-
-### Deployment
-
-    - Open the file "vagrantfile" and edit 'environment = "dev"' to whatever environment you want to VM to be used for
-
-    - Run the following command lines:
-        - vagrant up app
-        - vagrant ssh app
-        - sudo /vagrant/provisioning/app.extras.sh <gituser> <environment>
-
-    - If you want all packages to be updated:
-        - vagrant ssh app
-        - sudo yum update -y
-
-### Commands usefull in deployment and management
-
-    - /vagrant/provisioning/app.extras.sh <gituser> <environment>
-        - must be run manualy, by ssh to the VM and runing /vagrant/provisioning/app.extras.sh <gituser> <environment>
-
-### Issues

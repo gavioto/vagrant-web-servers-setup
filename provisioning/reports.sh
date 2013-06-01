@@ -23,9 +23,6 @@
 # ------------------------------------------------------------------
 
     fc_setVars(){
-
-        SCRIPT="REPORTS.SH"
-
         # parameters
         environment=$1
     }

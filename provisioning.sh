@@ -16,7 +16,7 @@
     action=''
     environment='dev'
     box='app'
-    vendor='default'
+    vendor='-'
     gituser=''
 
 # ==================================================================
@@ -103,7 +103,9 @@
             else
                 cd /vagrant
                 /vagrant/provisioning/$box.sh $environment
-                /vagrant/provisioning/vendor/$vendor/$box.vendor.sh $gituser $environment
+                if [ "$vendor" != "-" ]; then
+                    /vagrant/provisioning/vendor/$vendor/$box.vendor.sh $gituser $environment
+                fi
                 touch $vagrant_provisioning_lock
             fi
             ;;
