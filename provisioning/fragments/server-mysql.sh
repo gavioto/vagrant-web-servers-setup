@@ -58,7 +58,7 @@
     tar xfz ./phpMyAdmin-$phpmyadminVer-all-languages.tar.gz -C /usr/share/
     mv /usr/share/phpMyAdmin-$phpmyadminVer-all-languages /usr/share/phpmyadmin
     mv -f /vagrant/config.inc.php /usr/share/phpmyadmin
-    rm -f ./phpMyAdmin-$phpmyadminVer-all-languages.zip
+    rm -f ./phpMyAdmin-$phpmyadminVer-all-languages.tar.gz
     rm -f /vagrant/config.inc.php
 
 
