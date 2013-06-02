@@ -115,5 +115,6 @@
     echo
     echo "========== FINISHED PROVISIONING.SH =========="
     echo
+    echo "NOTE: sometimes this locks here, but you can safely terminate execution with ctrl+c"
 
     exit 0
