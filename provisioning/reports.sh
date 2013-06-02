@@ -40,7 +40,7 @@
 
         /vagrant/provisioning/fragments/server-jsp.sh
         /vagrant/provisioning/fragments/solr.sh
-        # /vagrant/provisioning/fragments/jasperserver.sh
+        /vagrant/provisioning/fragments/jasperserver.sh
 
         /vagrant/provisioning/fragments/firewall.sh
 

@@ -12,8 +12,9 @@
             You can access MySQL through http://192.168.1.11
 
         - db
-            A MySQL server with phpMyAdmin, secured with root pass 'xpto' you shouls use vendor scripts to change this
+            A MySQL server with phpMyAdmin
             You can access MySQL through http://192.168.1.12/phpmyadmin
+            Default user/pass: root/xpto (you should use vendor scripts to change this)
 
         - reports
             A reports server, with SOLR and JasperReports Server.
@@ -30,6 +31,8 @@
                     ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
 
             - Jasper Reports Server
+                You can access SOLR through http://192.168.1.13:8080/jasperserver
+                Default user/pass: jasperadmin/jasperadmin, joeuser/joeuser
 
         - mailings (planed OpenEmm installation)
 

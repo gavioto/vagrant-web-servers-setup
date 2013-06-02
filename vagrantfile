@@ -4,7 +4,7 @@
 environment = "dev"      # dev, tst, stg, prd
 vendor      = "-"        # for no vendor specific configs leave it as "-"
 gituser     = "hgraca"   # the git username from where to clone the projects in the vendor scripts
-memory      = "512"      # the VMs RAM memory
+memory      = "2048"      # the VMs RAM memory
 #
 #
 #
@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
 
         # Use VBoxManage to customize the VM. For example to change memory:
         vb.customize ["modifyvm", :id, "--memory", "#{memory}"]
+        # vb.customize ["modifyvm", "b8621fc6-0ec8-43bc-b38d-308d22ca64a6", "--memory", "1024"]
     end
 
     # ==================================================================

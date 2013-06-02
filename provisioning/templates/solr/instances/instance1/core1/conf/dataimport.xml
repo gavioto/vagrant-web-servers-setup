@@ -5,7 +5,7 @@
         url="jdbc:mysql://dbhostname/dbname?zeroDateTimeBehavior=convertToNull"
         user="solr"
         password="somefancypass"
-        batchSize="10"
+        batchSize="-1"
     />
     <document name="products">
         <entity
