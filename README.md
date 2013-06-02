@@ -20,7 +20,7 @@
             A reports server, with SOLR and JasperReports Server.
 
             - SOLR
-                You can access SOLR through http://192.168.1.13:8080/instance1
+                You can access SOLR through http://192.168.1.13/instance1
                 You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
                 Config files to edit in each new deployment:
                     /opt/solr/instances/<instance_name>.xml
@@ -31,7 +31,7 @@
                     ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
 
             - Jasper Reports Server
-                You can access SOLR through http://192.168.1.13:8080/jasperserver
+                You can access Jasper server through http://192.168.1.13/jasperserver
                 Default user/pass: jasperadmin/jasperadmin, joeuser/joeuser
 
         - mailings (planed OpenEmm installation)
