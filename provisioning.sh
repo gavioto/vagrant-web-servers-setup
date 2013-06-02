@@ -16,7 +16,7 @@
     action=''
     environment='dev'
     box='app'
-    vendor='-'
+    vendor='default'
     gituser=''
 
 # ==================================================================
@@ -103,8 +103,10 @@
             else
                 cd /vagrant
                 /vagrant/provisioning/$box.sh $environment
-                if [ "$vendor" != "-" ]; then
+                if [ "$vendor" != "default" ]; then
                     /vagrant/provisioning/vendor/$vendor/$box.vendor.sh $gituser $environment
+                else
+                    echo "Vagrantfile specific to the vendor is set to default, so it will not be run."
                 fi
                 touch $vagrant_provisioning_lock
             fi
