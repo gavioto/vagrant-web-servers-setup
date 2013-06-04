@@ -38,9 +38,13 @@
 
 ## Box Deployment
 
-    - Open the file "vagrantfile" and edit the variables to your needs
+    - Install git and vagrant
+    - do: git clone git@github.com:hgraca/vagrant-web-servers-setup.git ~/path/to/your/projects/folder
+    - Open the file "vagrantfile" and edit the variables to your needs,
+        or create a vendor folder as per the default example and edit vagrantfile.rb
 
     - Run the following command lines:
+        - cd ~/path/to/your/projects/folder
         - vagrant up <box_name>
 
     - If you want all packages to be updated:

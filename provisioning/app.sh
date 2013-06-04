@@ -57,37 +57,48 @@
         #
         # PEAR packages
         #
+        echo "installing pear packages PHPUnit, PHP_CodeSniffer, PHP_PMD, phpcpd..."
         pear install --alldeps phpunit/PHPUnit
         pear install --alldeps PHP_CodeSniffer
         pear install --alldeps phpmd/PHP_PMD
         pear install --alldeps pear.phpunit.de/phpcpd
+        echo "finished installing pear packages PHPUnit, PHP_CodeSniffer, PHP_PMD, phpcpd..."
 
         # PHP code standards fixer
-        wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/bin/php-cs-fixer
+        echo "downloading php-cs-fixer..."
+        wget --quiet "http://cs.sensiolabs.org/get/php-cs-fixer.phar" -O /usr/bin/php-cs-fixer
+        echo "installing php-cs-fixer..."
         chmod a+x /usr/bin/php-cs-fixer
+        echo "finished installing php-cs-fixer."
 
         # wget and unzip the analizer project with all dependencies to /opt
-        wget https://dl.dropboxusercontent.com/u/17350177/software/php-analyzer.tar.gz
+        echo "downloading php-analyzer..."
+        wget --quiet "https://dl.dropboxusercontent.com/u/17350177/software/php-analyzer.tar.gz"
+        echo "installing php-analyzer..."
         tar xfz ./php-analyzer.tar.gz -C /opt
         rm ./php-analyzer.tar.gz
         ln -s /opt/php-analyzer/bin/phpalizer /usr/bin/phpalizer
+        echo "finished installing php-analyzer."
 
 
         #
         # PHPUnit extra packages
         #
+        echo "installing PHPUnit extra packages..."
         yum -y install php-phpunit-DbUnit php-phpunit-PHPUnit-MockObject php-phpunit-PHPUnit-Selenium php-phpunit-File-Iterator php-phpunit-FinderFacade php-phpunit-PHP-CodeBrowser php-phpunit-PHP-CodeCoverage php-phpunit-PHP-Invoker php-phpunit-PHP-Timer php-phpunit-PHP-TokenStream php-phpunit-PHPUnit php-phpunit-PHPUnit-SkeletonGenerator php-phpunit-Text-Template php-phpunit-phpcpd php-phpunit-phpdcd php-phpunit-phploc
-
+        echo "finished installing PHPUnit extra packages..."
 
         #
         # Show errors
         #
+        echo "editing php.ini for development..."
         mv /etc/php.ini /etc/php.ini.bkp
         cat /etc/php.ini.bkp | sed -e "s/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/" > /etc/php.ini
         rm /etc/php.ini.bkp
         mv /etc/php.ini /etc/php.ini.bkp
         cat /etc/php.ini.bkp | sed -e "s/display_errors = Off/display_errors = On/" > /etc/php.ini
         rm /etc/php.ini.bkp
+        echo "finished editing php.ini for development..."
 
         echo "[$SCRIPT] ---------- Finished installing development utilities ----------"
     }
