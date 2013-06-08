@@ -7,7 +7,7 @@
 #
 # Version: 1.0.0
 echo
-echo "========== NANO.SH =========="
+echo "========== STARTED TEXT EDITORS.SH =========="
 echo
 
 #
@@ -41,6 +41,11 @@ include "/usr/share/nano/conf.nanorc"
 include "/usr/share/nano/php.nanorc"
 EOF
 
+#
+# NANO
+#
+yum -y install vim
+
 echo
-echo "========== FINISHED NANO.SH =========="
+echo "========== FINISHED TEXT EDITORS.SH =========="
 echo

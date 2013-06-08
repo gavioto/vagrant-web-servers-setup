@@ -54,7 +54,8 @@
     # Get the latest version of phpMyAdmin
     mv -f /usr/share/phpmyadmin/config.inc.php /vagrant
     rm -rf /usr/share/phpmyadmin
-    wget "http://kent.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/$phpmyadminVer/phpMyAdmin-$phpmyadminVer-all-languages.tar.gz"
+    echo "Downloading phpmyadmin $phpmyadminVer to replace old version from repo ..."
+    wget --quiet "http://kent.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin/$phpmyadminVer/phpMyAdmin-$phpmyadminVer-all-languages.tar.gz"
     tar xfz ./phpMyAdmin-$phpmyadminVer-all-languages.tar.gz -C /usr/share/
     mv /usr/share/phpMyAdmin-$phpmyadminVer-all-languages /usr/share/phpmyadmin
     mv -f /vagrant/config.inc.php /usr/share/phpmyadmin

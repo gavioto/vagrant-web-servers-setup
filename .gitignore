@@ -1,8 +1,3 @@
-# specific folders to ignore
-boxes
-workspace
-provisioning/vendor/vemt
-
 #mac files
 .DS_Store
 
@@ -23,3 +18,11 @@ TODO
 
 #git files
 *.orig
+
+
+# specific folders to ignore
+boxes
+DB
+workspace
+provisioning/vendor/vemt
+provisioning/vendor/vemt_old

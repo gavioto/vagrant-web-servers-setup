@@ -34,10 +34,11 @@
 
         echo "[$SCRIPT] ---------- Installing base functionality ----------"
 
-        /vagrant/provisioning/fragments/nano.sh
+        /vagrant/provisioning/fragments/editors.sh
         /vagrant/provisioning/fragments/yum.sh
         /vagrant/provisioning/fragments/ssh.sh
         /vagrant/provisioning/fragments/telnet.sh
+        /vagrant/provisioning/fragments/ftp.sh
         /vagrant/provisioning/fragments/git.sh
         /vagrant/provisioning/fragments/pear_packages.sh
 

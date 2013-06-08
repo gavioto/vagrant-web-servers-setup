@@ -1,7 +1,7 @@
 #
 # VARIABLE DEFAULT VALUES
 #
-vendor        = "default"  # for no vendor specific configs leave it as "-"
+vendor        = "vemt"  # for no vendor specific configs leave it as "-"
 vendor_folder = "./provisioning/vendor/#{vendor}/vagrantfile.rb"
 environment   = "dev"      # dev, tst, stg, prd
 hostname_ext  = "xpto.com" # will result in app.dev.xpto.com
@@ -44,9 +44,10 @@ Vagrant.configure("2") do |config|
 
     config.vm.define :app do |app|
         app.vm.box      = "CentOS-6.4-i386-v20130427"
-        # app.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
+        app.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
         # app.vm.box_url   = "~/VirtualBox VMs/boxes/CentOS-6.4-i386-v20130427.box"
-        app.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
+        # app.vm.box_url  = "smb://smbshare/samba/usb1_1/vagrant/boxes/CentOS-6.4-i386-v20130427.box"
+        # app.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
         app.vm.hostname = "app.#{environment}.#{hostname_ext}"
         app.ssh.timeout = 300
 
@@ -69,9 +70,10 @@ Vagrant.configure("2") do |config|
 
     config.vm.define :db do |db|
         db.vm.box      = "CentOS-6.4-i386-v20130427"
-        # db.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
+        db.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
         # db.vm.box_url  = "~/VirtualBox VMs/boxes/CentOS-6.4-i386-v20130427.box"
-        db.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
+        # db.vm.box_url  = "smb://smbshare/samba/usb1_1/vagrant/boxes/CentOS-6.4-i386-v20130427.box"
+        # db.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
         db.vm.hostname = "db.#{environment}.#{hostname_ext}"
         db.ssh.timeout = 300
 
@@ -90,9 +92,10 @@ Vagrant.configure("2") do |config|
 
     config.vm.define :reports do |reports|
         reports.vm.box      = "CentOS-6.4-i386-v20130427"
-        # reports.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
+        reports.vm.box_url  = "./boxes/CentOS-6.4-i386-v20130427.box"
         # reports.vm.box_url  = "~/VirtualBox VMs/boxes/CentOS-6.4-i386-v20130427.box"
-        reports.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
+        # reports.vm.box_url  = "smb://smbshare/samba/usb1_1/vagrant/boxes/CentOS-6.4-i386-v20130427.box"
+        # reports.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
         reports.vm.hostname = "reports.#{environment}.#{hostname_ext}"
         reports.ssh.timeout = 300
 
@@ -111,9 +114,10 @@ Vagrant.configure("2") do |config|
 
     config.vm.define :mailings do |mailings|
         mailings.vm.box      = "CentOS-6.4-i386-v20130427"
-        # mailings.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
+        mailings.vm.box_url   = "./boxes/CentOS-6.4-i386-v20130427.box"
         # mailings.vm.box_url  = "~/VirtualBox VMs/boxes/CentOS-6.4-i386-v20130427.box"
-        mailings.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
+        # mailings.vm.box_url  = "smb://smbshare/samba/usb1_1/vagrant/boxes/CentOS-6.4-i386-v20130427.box"
+        # mailings.vm.box_url  = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130427.box"
         mailings.vm.hostname = "mailings.#{environment}.#{hostname_ext}"
         mailings.ssh.timeout = 300
 

@@ -11,3 +11,7 @@
 #
 # FTP
 #
+yum -y install vsftpd
+
+chkconfig vsftpd on
+service vsftpd start
