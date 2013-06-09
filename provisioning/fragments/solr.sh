@@ -30,7 +30,7 @@ chown tomcat:tomcat -R /opt/solr-$ver_solr
 cp /opt/solr/example/lib/ext/* /usr/share/java/tomcat6
 cp /vagrant/provisioning/templates/solr/log4j.properties /usr/share/java/tomcat6
 
-chkconfig tomcat6 on && service tomcat6 restart
+service tomcat6 restart
 
 echo
 echo "========== FINISHED SOLR.SH =========="

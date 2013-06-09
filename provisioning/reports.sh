@@ -45,7 +45,7 @@
 
         /vagrant/provisioning/fragments/firewall.sh
 
-        # redirect ports 80 and 443 ()http and https) to 8080 and 8181 so by default we go to tomcat
+        # redirect ports 80 and 443 (http and https) to 8080 and 8181 so by default we go to tomcat
         iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
         iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8181
 

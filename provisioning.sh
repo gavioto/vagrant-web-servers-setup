@@ -18,6 +18,7 @@
     box='app'
     vendor='default'
     gituser=''
+    vagrant_provisioning_lock="/home/vagrant/.vagrant_provisioning.lock"
 
 # ==================================================================
 #
@@ -26,7 +27,6 @@
 # ------------------------------------------------------------------
 
     fc_setVars(){
-        vagrant_provisioning_lock="/home/vagrant/.vagrant_provisioning.lock"
 
         # CMD options
         while getopts "hb:e:v:g:" opt; do
@@ -117,6 +117,4 @@
     echo
     echo "========== FINISHED PROVISIONING.SH =========="
     echo
-    echo "NOTE: sometimes this locks here, but you can safely terminate execution with ctrl+c"
-
-    exit 0
+    echo "NOTE: sometimes this locks here, but you can safely terminate execution with ctrl+c twice"
