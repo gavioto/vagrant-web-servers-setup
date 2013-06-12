@@ -59,6 +59,9 @@ service jasperserver start
 echo
 echo "========== FINISHED JASPERSERVER.SH =========="
 echo '
+
+ATTENTION: If you suspend this VM, you will have to restart tomcat fot jasperserver to work again (sudo service tomcat6 restart)
+
 You might also want to:
 
     -------------------------------
