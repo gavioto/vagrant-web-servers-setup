@@ -1,7 +1,17 @@
 #!/bin/bash
 
 #
-# Provisioning for deployment of server
+# SCRIPT TO UPDATE JASPERSERVER TO ANOTHER VERSION
+#
+# It installs another version of jasperserver side by side with the old version
+#
+# Just edit the version of jasperserver, below, and run the script.
+# It will:
+#       export the current server data (reports, datasources, etc)
+#       install the new version
+#       update the links to the new version
+#       import the data from the old version
+#
 #
 # @author Herberto Graca <herberto.graca@gmail.com>
 #
@@ -10,12 +20,28 @@
 ver_jasper="5.1.0"
 
 echo
-echo "========== JASPERSERVER.SH =========="
+echo "========== UPDATING JASPERSERVER =========="
 echo
+
+ts=`date +%Y%m%d.%H%M`
+
+echo "exporting jasperserver data..."
+/opt/jasperserver/buildomatic/js-export.sh \
+    --output-zip /opt/jasperserver-export-$ts.zip \
+    --everything
+
+echo "stoping tomcat and jasperserver..."
+service tomcat6 stop
+service jasperserver stop
 
 echo "downloading jasperserver..."
 wget --quiet "http://community.jaspersoft.com/sites/default/files/releases/jasperreports-server-cp-$ver_jasper-linux-x86-installer.run"
 chmod -R +x jasperreports-server-cp-$ver_jasper-linux-x86-installer.run
+
+echo "removing legacy links before installing..."
+rm -f /opt/jasperserver
+rm -f /etc/tomcat6/Catalina/localhost/jasperserver.xml
+rm -f /usr/share/tomcat6/webapps/jasperserver
 
 echo "installing jasperserver..."
 ./jasperreports-server-cp-$ver_jasper-linux-x86-installer.run --optionfile /vagrant/provisioning/fragments/jasperserver.opts
@@ -46,20 +72,23 @@ echo "
 net.sf.jasperreports.query.executer.factory.xpath2=com.jaspersoft.jrx.query.JRXPathQueryExecuterFactory
 " >> /opt/jasperserver/apache-tomcat/webapps/jasperserver/WEB-INF/classes/jasperreports.properties
 
-echo "adding jasperserver autostart script..."
-cp /vagrant/provisioning/templates/jasperserver/jasperserver_init_script.sh /etc/init.d/jasperserver
-chmod u+x /etc/init.d/jasperserver
-
-echo "adding jasperserver update script..."
-cp /vagrant/provisioning/templates/jasperserver/jasperserver_update.sh /opt/jasperserver_update.sh
-
-chkconfig --add jasperserver
+echo "starting jasperserver and tomcat..."
 service jasperserver start
+service tomcat6 start
+
+echo "waiting 2min for jasperserver to start completely..."
+sleep 60
+
+echo "importing jasperserver data..."
+/opt/jasperserver/buildomatic/js-import.sh --input-zip /home/herberto/jasperserver-export-$ts.zip
+
 
 echo
-echo "========== FINISHED JASPERSERVER.SH =========="
+echo "========== FINISHED UPDATING JASPERSERVER =========="
 echo '
 You might also want to:
+
+    Make sure USER_ROLE only has execute permissions
 
     -------------------------------
     Add the nl_NL locale
