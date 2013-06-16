@@ -24,6 +24,7 @@ echo "installing solr $ver_solr ..."
 mv solr-$ver_solr /opt/solr-$ver_solr
 ln -s /opt/solr-$ver_solr /opt/solr
 cp -f /vagrant/provisioning/templates/solr/dataImport.sh /opt/solr/
+chmod a+x /opt/solr/dataImport.sh
 cp -r /vagrant/provisioning/templates/solr/instances /opt/solr/
 ln -s /opt/solr/instances/instance1.xml /usr/share/tomcat6/conf/Catalina/localhost/instance1.xml
 chown tomcat:tomcat -R /opt/solr-$ver_solr

@@ -63,11 +63,11 @@ Vagrant.configure("2") do |config|
         app.vm.hostname = "app.#{environment}.#{hostname_ext}"
         app.ssh.timeout = 300
 
-        app.vm.network :private_network, ip: "192.168.1.10"
-        app.vm.network :forwarded_port, guest: 21, host: 1021, auto_correct: true
-        app.vm.network :forwarded_port, guest: 22, host: 1022, auto_correct: true
-        app.vm.network :forwarded_port, guest: 80, host: 1080, auto_correct: true
-        app.vm.network :forwarded_port, guest: 8080, host: 108080, auto_correct: true
+        app.vm.network :private_network, ip: "192.168.1.11"
+        app.vm.network :forwarded_port, guest: 21, host: 1121, auto_correct: true
+        app.vm.network :forwarded_port, guest: 22, host: 1122, auto_correct: true
+        app.vm.network :forwarded_port, guest: 80, host: 1180, auto_correct: true
+        app.vm.network :forwarded_port, guest: 8080, host: 118080, auto_correct: true
         app.vm.provision :shell do |s|
             s.path = "provisioning.sh"
             s.args = "-b app -e #{environment} -g #{gituser} -v #{vendor}"
@@ -90,11 +90,11 @@ Vagrant.configure("2") do |config|
         db.vm.hostname = "db.#{environment}.#{hostname_ext}"
         db.ssh.timeout = 300
 
-        db.vm.network :private_network, ip: "192.168.1.20"
-        db.vm.network :forwarded_port, guest: 21, host: 2021, auto_correct: true
-        db.vm.network :forwarded_port, guest: 22, host: 2022, auto_correct: true
-        db.vm.network :forwarded_port, guest: 80, host: 2080, auto_correct: true
-        db.vm.network :forwarded_port, guest: 8080, host: 208080, auto_correct: true
+        db.vm.network :private_network, ip: "192.168.1.21"
+        db.vm.network :forwarded_port, guest: 21, host: 2121, auto_correct: true
+        db.vm.network :forwarded_port, guest: 22, host: 2122, auto_correct: true
+        db.vm.network :forwarded_port, guest: 80, host: 2180, auto_correct: true
+        db.vm.network :forwarded_port, guest: 8080, host: 218080, auto_correct: true
         db.vm.provision :shell do |s|
             s.path = "provisioning.sh"
             s.args = "-b db -e #{environment} -g #{gituser} -v #{vendor}"
@@ -113,11 +113,11 @@ Vagrant.configure("2") do |config|
         reports.vm.hostname = "reports.#{environment}.#{hostname_ext}"
         reports.ssh.timeout = 300
 
-        reports.vm.network :private_network, ip: "192.168.1.30"
-        reports.vm.network :forwarded_port, guest: 21, host: 3021, auto_correct: true
-        reports.vm.network :forwarded_port, guest: 22, host: 3022, auto_correct: true
-        reports.vm.network :forwarded_port, guest: 80, host: 3080, auto_correct: true
-        reports.vm.network :forwarded_port, guest: 8080, host: 308080, auto_correct: true
+        reports.vm.network :private_network, ip: "192.168.1.31"
+        reports.vm.network :forwarded_port, guest: 21, host: 3121, auto_correct: true
+        reports.vm.network :forwarded_port, guest: 22, host: 3122, auto_correct: true
+        reports.vm.network :forwarded_port, guest: 80, host: 3180, auto_correct: true
+        reports.vm.network :forwarded_port, guest: 8080, host: 318080, auto_correct: true
         reports.vm.provision :shell do |s|
             s.path = "provisioning.sh"
             s.args = "-b reports -e #{environment} -g #{gituser} -v #{vendor}"
@@ -130,21 +130,21 @@ Vagrant.configure("2") do |config|
     #
     # ------------------------------------------------------------------
 
-    config.vm.define :mailings do |mailings|
-        mailings.vm.box      = "#{mailings_box}"
-        mailings.vm.box_url  = "#{mailings_box_url}"
-        mailings.vm.hostname = "mailings.#{environment}.#{hostname_ext}"
-        mailings.ssh.timeout = 300
+    # config.vm.define :mailings do |mailings|
+    #     mailings.vm.box      = "#{mailings_box}"
+    #     mailings.vm.box_url  = "#{mailings_box_url}"
+    #     mailings.vm.hostname = "mailings.#{environment}.#{hostname_ext}"
+    #     mailings.ssh.timeout = 300
 
-        mailings.vm.network :private_network, ip: "192.168.1.40"
-        mailings.vm.network :forwarded_port, guest: 21, host: 4021, auto_correct: true
-        mailings.vm.network :forwarded_port, guest: 22, host: 4022, auto_correct: true
-        mailings.vm.network :forwarded_port, guest: 80, host: 4080, auto_correct: true
-        mailings.vm.network :forwarded_port, guest: 8080, host: 408080, auto_correct: true
-        mailings.vm.provision :shell do |s|
-            s.path = "provisioning.sh"
-            s.args = "-b mailings -e #{environment} -g #{gituser} -v #{vendor}"
-        end
-    end
+    #     mailings.vm.network :private_network, ip: "192.168.1.41"
+    #     mailings.vm.network :forwarded_port, guest: 21, host: 4121, auto_correct: true
+    #     mailings.vm.network :forwarded_port, guest: 22, host: 4122, auto_correct: true
+    #     mailings.vm.network :forwarded_port, guest: 80, host: 4180, auto_correct: true
+    #     mailings.vm.network :forwarded_port, guest: 8080, host: 418080, auto_correct: true
+    #     mailings.vm.provision :shell do |s|
+    #         s.path = "provisioning.sh"
+    #         s.args = "-b mailings -e #{environment} -g #{gituser} -v #{vendor}"
+    #     end
+    # end
 
 end

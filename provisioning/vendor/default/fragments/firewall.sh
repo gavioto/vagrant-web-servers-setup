@@ -12,6 +12,7 @@
 #
 # FIREWALL
 #
-    iptables -F
-    # iptables-restore < /vagrant/provisioning/vendor/default/templates/firewall/iptables.conf
+    # iptables-restore < /vagrant/provisioning/vendor/vemt/templates/firewall/iptables.conf
+
+    # service iptables save
     # service iptables restart

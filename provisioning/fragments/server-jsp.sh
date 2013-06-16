@@ -13,7 +13,7 @@ echo
 ver_java="1.6.0"
 ver_tomcat="6"
 
-yum install -y java-$ver_java-openjdk tomcat$ver_tomcat
+yum install -y liberation-sans-fonts java-$ver_java-openjdk tomcat$ver_tomcat
 # installs to folder /usr/share/tomcat6
 
 echo "Increase memory available so that solr and maily jasper don't have any memory problems ..."

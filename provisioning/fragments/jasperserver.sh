@@ -41,6 +41,15 @@ cp ./iReport-$ver_jasper/ireport/modules/ext/jasperreports-extensions-*.jar \
 rm -Rf ./iReport-$ver_jasper
 rm -f ./iReport-$ver_jasper.tar.gz
 
+echo "Downloading mysql JDBC driver ..."
+wget --quiet "http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.25.tar.gz"
+echo "Installing mysql JDBC driver in jasperserver..."
+tar xfz ./mysql-connector-java-5.1.25.tar.gz
+mv ./mysql-connector-java-5.1.25/mysql-connector-java-5.1.25-bin.jar /opt/jasperserver/apache-tomcat/webapps/jasperserver/WEB-INF/lib/
+rm -Rf ./mysql-connector-java-5.1.25
+rm -f ./mysql-connector-java-5.1.25.tar.gz
+echo "Done"
+
 echo "
 # addition for xpath2 queries
 net.sf.jasperreports.query.executer.factory.xpath2=com.jaspersoft.jrx.query.JRXPathQueryExecuterFactory
