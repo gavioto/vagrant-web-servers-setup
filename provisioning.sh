@@ -102,13 +102,23 @@
                 echo "If you want to run the provisioning script again, login to the VM and delete the file '$vagrant_provisioning_lock'"
             else
                 cd /vagrant
+                /vagrant/provisioning/fragments/clean.sh
                 /vagrant/provisioning/$box.sh $environment
-                if [ "$vendor" != "default" ]; then
-                    /vagrant/provisioning/vendor/$vendor/$box.vendor.sh $gituser $environment
-                else
-                    echo "Vagrantfile specific to the vendor is set to default, so it will not be run."
-                fi
+                /vagrant/provisioning/fragments/secure.sh
                 touch $vagrant_provisioning_lock
+            fi
+
+            if [ -f "/home/vagrant/.vagrant_provisioning_$vendor.lock" ]; then
+                echo "Vendor provisioning of this VM has already been made."
+                echo "If you want to run the provisioning script again, login to the VM and delete the file '/home/vagrant/.vagrant_provisioning_$vendor.lock'"
+            else
+                if [ -f "/vagrant/provisioning/vendor/$vendor/$box.vendor.sh" ]; then
+                    cd /vagrant
+                    /vagrant/provisioning/vendor/$vendor/$box.vendor.sh $gituser $environment
+                    touch /home/vagrant/.vagrant_provisioning_$vendor.lock
+                else
+                    echo "Vagrantfile specific to the vendor does not exist."
+                fi
             fi
             ;;
 

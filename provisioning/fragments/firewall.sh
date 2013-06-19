@@ -32,3 +32,19 @@
 
     service iptables save
     # service iptables restart
+
+# [vagrant@db ~]$ sudo iptables -L
+# Chain INPUT (policy ACCEPT)
+# target     prot opt source               destination
+# ACCEPT     all  --  anywhere             anywhere            state RELATED,ESTABLISHED
+# ACCEPT     icmp --  anywhere             anywhere
+# ACCEPT     all  --  anywhere             anywhere
+# ACCEPT     tcp  --  anywhere             anywhere            state NEW tcp dpt:ssh
+# REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited
+
+# Chain FORWARD (policy ACCEPT)
+# target     prot opt source               destination
+# REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited
+
+# Chain OUTPUT (policy ACCEPT)
+# target     prot opt source               destination

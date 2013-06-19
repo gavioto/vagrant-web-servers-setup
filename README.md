@@ -9,18 +9,20 @@
 
         - app
             An apache/php webserver. If in dev environment it will also install development utilities
-            You can access MySQL through http://192.168.1.11
+            You can access it through http://192.168.1.11
 
         - db
             A MySQL server with phpMyAdmin
-            You can access MySQL through http://192.168.1.12/phpmyadmin
+            You can access MySQL through http://192.168.1.21/phpmyadmin
             Default user/pass: root/xpto (you should use vendor scripts to change this)
 
         - reports
             A reports server, with SOLR and JasperReports Server.
 
             - SOLR
-                You can access SOLR through http://192.168.1.13/instance1
+                You can access SOLR through http://192.168.1.31/instance1
+                Default user/pass: root/xpto (you should use vendor scripts to change this)
+                Jasperserver user/pass: reportsserver/xpto (you should use vendor scripts to change this)
                 You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
                 Config files to edit in each new deployment:
                     /opt/solr/instances/<instance_name>.xml
@@ -31,7 +33,7 @@
                     ln -s /opt/solr/instances/<instance_name>.xml /usr/share/tomcat6/conf/Catalina/localhost/<instance_name>.xml
 
             - Jasper Reports Server
-                You can access Jasper server through http://192.168.1.13/jasperserver
+                You can access Jasper server through http://192.168.1.31/jasperserver
                 Default user/pass: jasperadmin/jasperadmin, joeuser/joeuser
 
         - mailings (planed OpenEmm installation)
