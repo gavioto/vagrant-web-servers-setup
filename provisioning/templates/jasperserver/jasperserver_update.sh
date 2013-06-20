@@ -31,8 +31,13 @@ echo "exporting jasperserver data..."
     --everything
 
 echo "stoping tomcat and jasperserver..."
-service tomcat6 stop
+# service tomcat6 stop
 service jasperserver stop
+
+if [ -d "/opt/jasperserver-$ver_jasper" ]; then
+    echo "moving old instalation of same version..."
+    mv /opt/jasperserver-$ver_jasper /opt/jasperserver-$ver_jasper-bkp-ts
+fi
 
 echo "downloading jasperserver..."
 wget --quiet "http://community.jaspersoft.com/sites/default/files/releases/jasperreports-server-cp-$ver_jasper-linux-x86-installer.run"
@@ -48,16 +53,7 @@ echo "installing jasperserver..."
 rm jasperreports-server-cp-$ver_jasper-linux-x86-installer.run
 
 echo "creating generic link to jasperserver..."
-chmod -R o+w /usr/share/tomcat6/webapps/jasperserver/
 ln -s -f /opt/jasperserver-$ver_jasper /opt/jasperserver
-
-echo "moving all jasperserver assets to one location..."
-cp -f /vagrant/provisioning/templates/jasperserver/jasperserver.xml /opt/jasperserver/jasperserver.xml
-ln -s -f /opt/jasperserver/jasperserver.xml /etc/tomcat6/Catalina/localhost/jasperserver.xml
-
-mkdir -p /opt/jasperserver/apache-tomcat/webapps
-mv /usr/share/tomcat6/webapps/jasperserver /opt/jasperserver/apache-tomcat/webapps/jasperserver
-ln -s -f /opt/jasperserver/apache-tomcat/webapps/jasperserver /usr/share/tomcat6/webapps/jasperserver
 
 echo "fetching and installing driver for xml datasources, to use xpath2 and solr..."
 wget --quiet "http://netcologne.dl.sourceforge.net/project/ireport/iReport/iReport-$ver_jasper/iReport-$ver_jasper.tar.gz"
@@ -74,7 +70,7 @@ net.sf.jasperreports.query.executer.factory.xpath2=com.jaspersoft.jrx.query.JRXP
 
 echo "starting jasperserver and tomcat..."
 service jasperserver start
-service tomcat6 start
+# service tomcat6 start
 
 echo "waiting 2min for jasperserver to start completely..."
 sleep 60

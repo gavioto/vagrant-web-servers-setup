@@ -1,0 +1,6 @@
+mode=unattended
+prefix=/opt/jasperserver-5.1.0
+jasperserver_install_sampledata=0
+tomcat_installation_type=existing
+tomcat_server_directory=/usr/share/tomcat6
+postgres_password=xpto

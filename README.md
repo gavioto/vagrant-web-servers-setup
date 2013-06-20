@@ -20,7 +20,7 @@
             A reports server, with SOLR and JasperReports Server.
 
             - SOLR
-                You can access SOLR through http://192.168.1.31/instance1
+                You can access SOLR through http://192.168.1.31:8080/instance1
                 Default user/pass: root/xpto (you should use vendor scripts to change this)
                 Jasperserver user/pass: reportsserver/xpto (you should use vendor scripts to change this)
                 You can add new instances and cores in /opt/solr/instances, duplicating the 'instance1' example.
